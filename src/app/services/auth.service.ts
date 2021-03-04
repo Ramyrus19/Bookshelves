@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-// @ts-ignore
-import { auth } from 'firebase/app';
-import {Router} from '@angular/router';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(public afAuth: AngularFireAuth,
-              public router: Router) { }
+  constructor() { }
 
   // tslint:disable-next-line:typedef
   createNewUser(email: string, password: string){
     return new Promise(
       (resolve, reject) => {
-        this.afAuth.createUserWithEmailAndPassword(email, password).then(
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
             // @ts-ignore
             resolve();
@@ -33,7 +31,7 @@ export class AuthService {
   signInUser(email: string, password: string){
     return new Promise(
       (resolve, reject) => {
-        this.afAuth.signInWithEmailAndPassword(email, password).then(
+        firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
             // @ts-ignore
             resolve();
@@ -48,6 +46,6 @@ export class AuthService {
 
   // tslint:disable-next-line:typedef
   signOutUser(){
-    this.afAuth.signOut();
+    firebase.auth().signOut();
   }
 }
