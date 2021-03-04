@@ -7,6 +7,9 @@
 # compiled output
 dist/
 tmp/
+environments/
+**/src/environments/environment.prod.ts
+**/src/environments/environment.ts
 app/**/*.js
 app/**/*.js.map
 
